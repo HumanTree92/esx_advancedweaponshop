@@ -21,4 +21,7 @@ client_scripts {
 	'client/main.lua'
 }
 
-dependency 'es_extended'
+dependencies {
+	'es_extended',
+	'esx_licenseshop'
+}
