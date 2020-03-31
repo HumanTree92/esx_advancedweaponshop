@@ -6,7 +6,8 @@ I did NOT create the Code. I only edited the esx_weaponshop code to create this 
 # Helpfull Info:
 * This Weapon Shops works similar to esx_weaponshop.
 * Players will be required to own different Licenses to purchase certain Weapons.
-* THIS IS A NEW SCRIPT THAT I HAVEN'T FULLY TESTED
+* Its best to leave Sniper Rifles & LMGs out of the BlackShop so it gives players a job to sell Weapons.
+  * If you add LMGs & Snipers in the Blackshop you will have to edit the client/main.lua.
 
 # Requirements:
 * Required:

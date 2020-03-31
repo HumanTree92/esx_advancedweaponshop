@@ -1,0 +1,636 @@
+local HasAlreadyEnteredMarker, IsInShopMenu = false, false
+local CurrentAction, CurrentActionMsg, LastZone
+local CurrentActionData = {}
+ESX = nil
+
+Citizen.CreateThread(function()
+	while ESX == nil do
+		TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
+		Citizen.Wait(0)
+	end
+
+	-- Get Melee Weapons
+	ESX.TriggerServerCallback('esx_advancedweaponshop:getMelee', function(shopMelee)
+		for k,v in pairs(shopMelee) do
+			Config.Zones[k].Items1 = v
+		end
+	end)
+	-- Get Handguns
+	ESX.TriggerServerCallback('esx_advancedweaponshop:getHandgun', function(shopHandgun)
+		for k,v in pairs(shopHandgun) do
+			Config.Zones[k].Items2 = v
+		end
+	end)
+	-- Get SMGs
+	ESX.TriggerServerCallback('esx_advancedweaponshop:getSMG', function(shopSMG)
+		for k,v in pairs(shopSMG) do
+			Config.Zones[k].Items3 = v
+		end
+	end)
+	-- Get Shotguns
+	ESX.TriggerServerCallback('esx_advancedweaponshop:getShotgun', function(shopShotgun)
+		for k,v in pairs(shopShotgun) do
+			Config.Zones[k].Items4 = v
+		end
+	end)
+	-- Get Assault Rifles
+	ESX.TriggerServerCallback('esx_advancedweaponshop:getAssault', function(shopAssault)
+		for k,v in pairs(shopAssault) do
+			Config.Zones[k].Items5 = v
+		end
+	end)
+	-- Get LMGs
+	ESX.TriggerServerCallback('esx_advancedweaponshop:getLMG', function(shopLMG)
+		for k,v in pairs(shopLMG) do
+			Config.Zones[k].Items6 = v
+		end
+	end)
+	-- Get Sniper Rifles
+	ESX.TriggerServerCallback('esx_advancedweaponshop:getSniper', function(shopSniper)
+		for k,v in pairs(shopSniper) do
+			Config.Zones[k].Items7 = v
+		end
+	end)
+end)
+
+-- Send Melee Weapons
+RegisterNetEvent('esx_advancedweaponshop:sendMelee')
+AddEventHandler('esx_advancedweaponshop:sendMelee', function(shopMelee)
+	for k,v in pairs(shopMelee) do
+		Config.Zones[k].Items1 = v
+	end
+end)
+
+-- Send Handguns
+RegisterNetEvent('esx_advancedweaponshop:sendHandgun')
+AddEventHandler('esx_advancedweaponshop:sendHandgun', function(shopHandgun)
+	for k,v in pairs(shopHandgun) do
+		Config.Zones[k].Items2 = v
+	end
+end)
+
+-- Send SMGs
+RegisterNetEvent('esx_advancedweaponshop:sendSMG')
+AddEventHandler('esx_advancedweaponshop:sendSMG', function(shopSMG)
+	for k,v in pairs(shopSMG) do
+		Config.Zones[k].Items3 = v
+	end
+end)
+
+-- Send Shotguns
+RegisterNetEvent('esx_advancedweaponshop:sendShotgun')
+AddEventHandler('esx_advancedweaponshop:sendShotgun', function(shopShotgun)
+	for k,v in pairs(shopShotgun) do
+		Config.Zones[k].Items4 = v
+	end
+end)
+
+-- Send Assault Rifles
+RegisterNetEvent('esx_advancedweaponshop:sendAssault')
+AddEventHandler('esx_advancedweaponshop:sendAssault', function(shopAssault)
+	for k,v in pairs(shopAssault) do
+		Config.Zones[k].Items5 = v
+	end
+end)
+
+-- Send LMGs
+RegisterNetEvent('esx_advancedweaponshop:sendLMG')
+AddEventHandler('esx_advancedweaponshop:sendLMG', function(shopLMG)
+	for k,v in pairs(shopLMG) do
+		Config.Zones[k].Items6 = v
+	end
+end)
+
+-- Send Sniper Rifles
+RegisterNetEvent('esx_advancedweaponshop:sendSniper')
+AddEventHandler('esx_advancedweaponshop:sendSniper', function(shopSniper)
+	for k,v in pairs(shopSniper) do
+		Config.Zones[k].Items7 = v
+	end
+end)
+
+-- Open Main Menu
+function OpenMainMenu(zone)
+	ESX.UI.Menu.CloseAll()
+
+	ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'weapon_cat', {
+		title = _U('weapon_cat'),
+		align = 'top-left',
+		elements = {
+			{label = _U('wea_melee'),   value = 'wea_melee'},
+			{label = _U('wea_handgun'), value = 'wea_handgun'},
+			{label = _U('wea_smg'),     value = 'wea_smg'},
+			{label = _U('wea_shotgun'), value = 'wea_shotgun'},
+			{label = _U('wea_assault'), value = 'wea_assault'},
+			{label = _U('wea_lmg'),     value = 'wea_lmg'},
+			{label = _U('wea_sniper'),  value = 'wea_sniper'}
+	}}, function(data, menu)
+		local value = data.current.value
+		local wvalue = value
+
+		if data.current.value == 'wea_melee' then
+			if Config.LicenseEnable and Config.RequireMeleeLicense and Config.Zones[zone].Legal then
+				ESX.TriggerServerCallback('esx_license:checkLicense', function(hasLicense)
+					if hasLicense then
+						menu.close()
+						OpenShopMenu(wvalue, zone)
+					else
+						ESX.ShowNotification(_U('go_to'))
+					end
+				end, GetPlayerServerId(PlayerId()), 'weapon_melee')
+			else
+				menu.close()
+				OpenShopMenu(wvalue, zone)
+			end
+		elseif data.current.value == 'wea_handgun' then
+			if Config.LicenseEnable and Config.Zones[zone].Legal then
+				ESX.TriggerServerCallback('esx_license:checkLicense', function(hasLicense)
+					if hasLicense then
+						menu.close()
+						OpenShopMenu(wvalue, zone)
+					else
+						ESX.ShowNotification(_U('go_to'))
+					end
+				end, GetPlayerServerId(PlayerId()), 'weapon_handgun')
+			else
+				menu.close()
+				OpenShopMenu(wvalue, zone)
+			end
+		elseif data.current.value == 'wea_smg' then
+			if Config.LicenseEnable and Config.Zones[zone].Legal then
+				ESX.TriggerServerCallback('esx_license:checkLicense', function(hasLicense)
+					if hasLicense then
+						menu.close()
+						OpenShopMenu(wvalue, zone)
+					else
+						ESX.ShowNotification(_U('go_to'))
+					end
+				end, GetPlayerServerId(PlayerId()), 'weapon_smg')
+			else
+				menu.close()
+				OpenShopMenu(wvalue, zone)
+			end
+		elseif data.current.value == 'wea_shotgun' then
+			if Config.LicenseEnable and Config.Zones[zone].Legal then
+				ESX.TriggerServerCallback('esx_license:checkLicense', function(hasLicense)
+					if hasLicense then
+						menu.close()
+						OpenShopMenu(wvalue, zone)
+					else
+						ESX.ShowNotification(_U('go_to'))
+					end
+				end, GetPlayerServerId(PlayerId()), 'weapon_shotgun')
+			else
+				menu.close()
+				OpenShopMenu(wvalue, zone)
+			end
+		elseif data.current.value == 'wea_assault' then
+			if Config.LicenseEnable and Config.Zones[zone].Legal then
+				ESX.TriggerServerCallback('esx_license:checkLicense', function(hasLicense)
+					if hasLicense then
+						menu.close()
+						OpenShopMenu(wvalue, zone)
+					else
+						ESX.ShowNotification(_U('go_to'))
+					end
+				end, GetPlayerServerId(PlayerId()), 'weapon_assault')
+			else
+				menu.close()
+				OpenShopMenu(wvalue, zone)
+			end
+		elseif data.current.value == 'wea_lmg' then
+			if Config.LicenseEnable and Config.Zones[zone].Legal then
+				ESX.TriggerServerCallback('esx_license:checkLicense', function(hasLicense)
+					if hasLicense then
+						menu.close()
+						OpenShopMenu(wvalue, zone)
+					else
+						ESX.ShowNotification(_U('go_to'))
+					end
+				end, GetPlayerServerId(PlayerId()), 'weapon_lmg')
+			else
+				menu.close()
+				ESX.ShowNotification(_U('no_wea'))
+			end
+		elseif data.current.value == 'wea_sniper' then
+			if Config.LicenseEnable and Config.Zones[zone].Legal then
+				ESX.TriggerServerCallback('esx_license:checkLicense', function(hasLicense)
+					if hasLicense then
+						menu.close()
+						OpenShopMenu(wvalue, zone)
+					else
+						ESX.ShowNotification(_U('go_to'))
+					end
+				end, GetPlayerServerId(PlayerId()), 'weapon_sniper')
+			else
+				menu.close()
+				ESX.ShowNotification(_U('no_wea'))
+			end
+		end
+
+		menu.close()
+	end, function(data, menu)
+		menu.close()
+	end)
+end
+
+-- Open Shop Menu
+function OpenShopMenu(wvalue, zone)
+	local elements = {}
+	IsInShopMenu = true
+
+	if wvalue == 'wea_melee' then
+		for i=1, #Config.Zones[zone].Items1, 1 do
+			local item = Config.Zones[zone].Items1[i]
+
+			table.insert(elements, {
+				label = ('%s - <span style="color: green;">%s</span>'):format(item.label, _U('shop_menu_item', ESX.Math.GroupDigits(item.price))),
+				price = item.price,
+				weaponName = item.item
+			})
+		end
+
+		ESX.UI.Menu.CloseAll()
+		PlaySoundFrontend(-1, 'BACK', 'HUD_AMMO_SHOP_SOUNDSET', false)
+
+		ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'shop', {
+			title = _U('shop_menu_title'),
+			align = 'top-left',
+			elements = elements
+		}, function(data, menu)
+			ESX.TriggerServerCallback('esx_advancedweaponshop:buyWeapon', function(bought)
+				if bought then
+					DisplayBoughtScaleform(data.current.weaponName, data.current.price)
+				else
+					PlaySoundFrontend(-1, 'ERROR', 'HUD_AMMO_SHOP_SOUNDSET', false)
+				end
+			end, data.current.weaponName, zone)
+		end, function(data, menu)
+			PlaySoundFrontend(-1, 'BACK', 'HUD_AMMO_SHOP_SOUNDSET', false)
+			IsInShopMenu = false
+			menu.close()
+
+			CurrentAction = 'shop_menu'
+			CurrentActionMsg = _U('shop_menu_prompt')
+			CurrentActionData = {zone = zone}
+		end, function(data, menu)
+			PlaySoundFrontend(-1, 'NAV', 'HUD_AMMO_SHOP_SOUNDSET', false)
+		end)
+	elseif wvalue == 'wea_handgun' then
+		for i=1, #Config.Zones[zone].Items2, 1 do
+			local item = Config.Zones[zone].Items2[i]
+
+			table.insert(elements, {
+				label = ('%s - <span style="color: green;">%s</span>'):format(item.label, _U('shop_menu_item', ESX.Math.GroupDigits(item.price))),
+				price = item.price,
+				weaponName = item.item
+			})
+		end
+
+		ESX.UI.Menu.CloseAll()
+		PlaySoundFrontend(-1, 'BACK', 'HUD_AMMO_SHOP_SOUNDSET', false)
+
+		ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'shop', {
+			title = _U('shop_menu_title'),
+			align = 'top-left',
+			elements = elements
+		}, function(data, menu)
+			ESX.TriggerServerCallback('esx_advancedweaponshop:buyWeapon', function(bought)
+				if bought then
+					DisplayBoughtScaleform(data.current.weaponName, data.current.price)
+				else
+					PlaySoundFrontend(-1, 'ERROR', 'HUD_AMMO_SHOP_SOUNDSET', false)
+				end
+			end, data.current.weaponName, zone)
+		end, function(data, menu)
+			PlaySoundFrontend(-1, 'BACK', 'HUD_AMMO_SHOP_SOUNDSET', false)
+			IsInShopMenu = false
+			menu.close()
+
+			CurrentAction = 'shop_menu'
+			CurrentActionMsg = _U('shop_menu_prompt')
+			CurrentActionData = {zone = zone}
+		end, function(data, menu)
+			PlaySoundFrontend(-1, 'NAV', 'HUD_AMMO_SHOP_SOUNDSET', false)
+		end)
+	elseif wvalue == 'wea_smg' then
+		for i=1, #Config.Zones[zone].Items3, 1 do
+			local item = Config.Zones[zone].Items3[i]
+
+			table.insert(elements, {
+				label = ('%s - <span style="color: green;">%s</span>'):format(item.label, _U('shop_menu_item', ESX.Math.GroupDigits(item.price))),
+				price = item.price,
+				weaponName = item.item
+			})
+		end
+
+		ESX.UI.Menu.CloseAll()
+		PlaySoundFrontend(-1, 'BACK', 'HUD_AMMO_SHOP_SOUNDSET', false)
+
+		ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'shop', {
+			title = _U('shop_menu_title'),
+			align = 'top-left',
+			elements = elements
+		}, function(data, menu)
+			ESX.TriggerServerCallback('esx_advancedweaponshop:buyWeapon', function(bought)
+				if bought then
+					DisplayBoughtScaleform(data.current.weaponName, data.current.price)
+				else
+					PlaySoundFrontend(-1, 'ERROR', 'HUD_AMMO_SHOP_SOUNDSET', false)
+				end
+			end, data.current.weaponName, zone)
+		end, function(data, menu)
+			PlaySoundFrontend(-1, 'BACK', 'HUD_AMMO_SHOP_SOUNDSET', false)
+			IsInShopMenu = false
+			menu.close()
+
+			CurrentAction = 'shop_menu'
+			CurrentActionMsg = _U('shop_menu_prompt')
+			CurrentActionData = {zone = zone}
+		end, function(data, menu)
+			PlaySoundFrontend(-1, 'NAV', 'HUD_AMMO_SHOP_SOUNDSET', false)
+		end)
+	elseif wvalue == 'wea_shotgun' then
+		for i=1, #Config.Zones[zone].Items4, 1 do
+			local item = Config.Zones[zone].Items4[i]
+
+			table.insert(elements, {
+				label = ('%s - <span style="color: green;">%s</span>'):format(item.label, _U('shop_menu_item', ESX.Math.GroupDigits(item.price))),
+				price = item.price,
+				weaponName = item.item
+			})
+		end
+
+		ESX.UI.Menu.CloseAll()
+		PlaySoundFrontend(-1, 'BACK', 'HUD_AMMO_SHOP_SOUNDSET', false)
+
+		ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'shop', {
+			title = _U('shop_menu_title'),
+			align = 'top-left',
+			elements = elements
+		}, function(data, menu)
+			ESX.TriggerServerCallback('esx_advancedweaponshop:buyWeapon', function(bought)
+				if bought then
+					DisplayBoughtScaleform(data.current.weaponName, data.current.price)
+				else
+					PlaySoundFrontend(-1, 'ERROR', 'HUD_AMMO_SHOP_SOUNDSET', false)
+				end
+			end, data.current.weaponName, zone)
+		end, function(data, menu)
+			PlaySoundFrontend(-1, 'BACK', 'HUD_AMMO_SHOP_SOUNDSET', false)
+			IsInShopMenu = false
+			menu.close()
+
+			CurrentAction = 'shop_menu'
+			CurrentActionMsg = _U('shop_menu_prompt')
+			CurrentActionData = {zone = zone}
+		end, function(data, menu)
+			PlaySoundFrontend(-1, 'NAV', 'HUD_AMMO_SHOP_SOUNDSET', false)
+		end)
+	elseif wvalue == 'wea_assault' then
+		for i=1, #Config.Zones[zone].Items5, 1 do
+			local item = Config.Zones[zone].Items5[i]
+
+			table.insert(elements, {
+				label = ('%s - <span style="color: green;">%s</span>'):format(item.label, _U('shop_menu_item', ESX.Math.GroupDigits(item.price))),
+				price = item.price,
+				weaponName = item.item
+			})
+		end
+
+		ESX.UI.Menu.CloseAll()
+		PlaySoundFrontend(-1, 'BACK', 'HUD_AMMO_SHOP_SOUNDSET', false)
+
+		ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'shop', {
+			title = _U('shop_menu_title'),
+			align = 'top-left',
+			elements = elements
+		}, function(data, menu)
+			ESX.TriggerServerCallback('esx_advancedweaponshop:buyWeapon', function(bought)
+				if bought then
+					DisplayBoughtScaleform(data.current.weaponName, data.current.price)
+				else
+					PlaySoundFrontend(-1, 'ERROR', 'HUD_AMMO_SHOP_SOUNDSET', false)
+				end
+			end, data.current.weaponName, zone)
+		end, function(data, menu)
+			PlaySoundFrontend(-1, 'BACK', 'HUD_AMMO_SHOP_SOUNDSET', false)
+			IsInShopMenu = false
+			menu.close()
+
+			CurrentAction = 'shop_menu'
+			CurrentActionMsg = _U('shop_menu_prompt')
+			CurrentActionData = {zone = zone}
+		end, function(data, menu)
+			PlaySoundFrontend(-1, 'NAV', 'HUD_AMMO_SHOP_SOUNDSET', false)
+		end)
+	elseif wvalue == 'wea_lmg' then
+		for i=1, #Config.Zones[zone].Items6, 1 do
+			local item = Config.Zones[zone].Items6[i]
+
+			table.insert(elements, {
+				label = ('%s - <span style="color: green;">%s</span>'):format(item.label, _U('shop_menu_item', ESX.Math.GroupDigits(item.price))),
+				price = item.price,
+				weaponName = item.item
+			})
+		end
+
+		ESX.UI.Menu.CloseAll()
+		PlaySoundFrontend(-1, 'BACK', 'HUD_AMMO_SHOP_SOUNDSET', false)
+
+		ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'shop', {
+			title = _U('shop_menu_title'),
+			align = 'top-left',
+			elements = elements
+		}, function(data, menu)
+			ESX.TriggerServerCallback('esx_advancedweaponshop:buyWeapon', function(bought)
+				if bought then
+					DisplayBoughtScaleform(data.current.weaponName, data.current.price)
+				else
+					PlaySoundFrontend(-1, 'ERROR', 'HUD_AMMO_SHOP_SOUNDSET', false)
+				end
+			end, data.current.weaponName, zone)
+		end, function(data, menu)
+			PlaySoundFrontend(-1, 'BACK', 'HUD_AMMO_SHOP_SOUNDSET', false)
+			IsInShopMenu = false
+			menu.close()
+
+			CurrentAction = 'shop_menu'
+			CurrentActionMsg = _U('shop_menu_prompt')
+			CurrentActionData = {zone = zone}
+		end, function(data, menu)
+			PlaySoundFrontend(-1, 'NAV', 'HUD_AMMO_SHOP_SOUNDSET', false)
+		end)
+	elseif wvalue == 'wea_sniper' then
+		for i=1, #Config.Zones[zone].Items7, 1 do
+			local item = Config.Zones[zone].Items7[i]
+
+			table.insert(elements, {
+				label = ('%s - <span style="color: green;">%s</span>'):format(item.label, _U('shop_menu_item', ESX.Math.GroupDigits(item.price))),
+				price = item.price,
+				weaponName = item.item
+			})
+		end
+
+		ESX.UI.Menu.CloseAll()
+		PlaySoundFrontend(-1, 'BACK', 'HUD_AMMO_SHOP_SOUNDSET', false)
+
+		ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'shop', {
+			title = _U('shop_menu_title'),
+			align = 'top-left',
+			elements = elements
+		}, function(data, menu)
+			ESX.TriggerServerCallback('esx_advancedweaponshop:buyWeapon', function(bought)
+				if bought then
+					DisplayBoughtScaleform(data.current.weaponName, data.current.price)
+				else
+					PlaySoundFrontend(-1, 'ERROR', 'HUD_AMMO_SHOP_SOUNDSET', false)
+				end
+			end, data.current.weaponName, zone)
+		end, function(data, menu)
+			PlaySoundFrontend(-1, 'BACK', 'HUD_AMMO_SHOP_SOUNDSET', false)
+			IsInShopMenu = false
+			menu.close()
+
+			CurrentAction = 'shop_menu'
+			CurrentActionMsg = _U('shop_menu_prompt')
+			CurrentActionData = {zone = zone}
+		end, function(data, menu)
+			PlaySoundFrontend(-1, 'NAV', 'HUD_AMMO_SHOP_SOUNDSET', false)
+		end)
+	end
+end
+
+-- Display Bought
+function DisplayBoughtScaleform(weaponName, price)
+	local scaleform = ESX.Scaleform.Utils.RequestScaleformMovie('MP_BIG_MESSAGE_FREEMODE')
+	local sec = 4
+
+	BeginScaleformMovieMethod(scaleform, 'SHOW_WEAPON_PURCHASED')
+
+	PushScaleformMovieMethodParameterString(_U('weapon_bought', ESX.Math.GroupDigits(price)))
+	PushScaleformMovieMethodParameterString(ESX.GetWeaponLabel(weaponName))
+	PushScaleformMovieMethodParameterInt(GetHashKey(weaponName))
+	PushScaleformMovieMethodParameterString('')
+	PushScaleformMovieMethodParameterInt(100)
+
+	EndScaleformMovieMethod()
+
+	PlaySoundFrontend(-1, 'WEAPON_PURCHASE', 'HUD_AMMO_SHOP_SOUNDSET', false)
+
+	Citizen.CreateThread(function()
+		while sec > 0 do
+			Citizen.Wait(0)
+			sec = sec - 0.01
+	
+			DrawScaleformMovieFullscreen(scaleform, 255, 255, 255, 255)
+		end
+	end)
+end
+
+-- Entered Marker
+AddEventHandler('esx_advancedweaponshop:hasEnteredMarker', function(zone)
+	if zone == 'GunShop' or zone == 'BlackShop' then
+		CurrentAction = 'shop_menu'
+		CurrentActionMsg = _U('shop_menu_prompt')
+		CurrentActionData = {zone = zone}
+	end
+end)
+
+-- Exited Marker
+AddEventHandler('esx_advancedweaponshop:hasExitedMarker', function(zone)
+	CurrentAction = nil
+	ESX.UI.Menu.CloseAll()
+end)
+
+-- Resource Stop
+AddEventHandler('onResourceStop', function(resource)
+	if resource == GetCurrentResourceName() then
+		if IsInShopMenu then
+			ESX.UI.Menu.CloseAll()
+		end
+	end
+end)
+
+-- Create Blips
+Citizen.CreateThread(function()
+	for k,v in pairs(Config.Zones) do
+		if v.Legal then
+			for i = 1, #v.Locations, 1 do
+				local blip = AddBlipForCoord(v.Locations[i])
+
+				SetBlipSprite (blip, 110)
+				SetBlipDisplay(blip, 4)
+				SetBlipScale  (blip, 1.0)
+				SetBlipColour (blip, 81)
+				SetBlipAsShortRange(blip, true)
+
+				BeginTextCommandSetBlipName("STRING")
+				AddTextComponentSubstringPlayerName(_U('map_blip'))
+				EndTextCommandSetBlipName(blip)
+			end
+		end
+	end
+end)
+
+-- Display Markers
+Citizen.CreateThread(function()
+	while true do
+		Citizen.Wait(0)
+		local coords = GetEntityCoords(PlayerPedId())
+
+		for k,v in pairs(Config.Zones) do
+			for i = 1, #v.Locations, 1 do
+				if (Config.MarkerInfo.Type ~= -1 and GetDistanceBetweenCoords(coords, v.Locations[i], true) < Config.DrawDistance) then
+					DrawMarker(Config.MarkerInfo.Type, v.Locations[i], 0.0, 0.0, 0.0, 0, 0.0, 0.0, Config.MarkerInfo.x, Config.MarkerInfo.y, Config.MarkerInfo.z, Config.MarkerInfo.r, Config.MarkerInfo.g, Config.MarkerInfo.b, 100, false, true, 2, false, false, false, false)
+				end
+			end
+		end
+	end
+end)
+
+-- Enter / Exit marker events
+Citizen.CreateThread(function()
+	while true do
+		Citizen.Wait(0)
+		local coords = GetEntityCoords(PlayerPedId())
+		local isInMarker, currentZone = false, nil
+
+		for k,v in pairs(Config.Zones) do
+			for i=1, #v.Locations, 1 do
+				if GetDistanceBetweenCoords(coords, v.Locations[i], true) < Config.MarkerInfo.x then
+					isInMarker, ShopMelee, ShopHandgun, ShopSMG, ShopShotgun, ShopAssault, ShopLMG, ShopSniper, currentZone, LastZone = true, v.Items1, v.Items2, v.Items3, v.Items4, v.Items5, v.Items6, v.Items7, k, k
+				end
+			end
+		end
+
+		if isInMarker and not HasAlreadyEnteredMarker then
+			HasAlreadyEnteredMarker = true
+			TriggerEvent('esx_advancedweaponshop:hasEnteredMarker', currentZone)
+		end
+		
+		if not isInMarker and HasAlreadyEnteredMarker then
+			HasAlreadyEnteredMarker = false
+			TriggerEvent('esx_advancedweaponshop:hasExitedMarker', LastZone)
+		end
+	end
+end)
+
+-- Key Controls
+Citizen.CreateThread(function()
+	while true do
+		Citizen.Wait(0)
+
+		if CurrentAction ~= nil then
+			ESX.ShowHelpNotification(CurrentActionMsg)
+
+			if IsControlJustReleased(0, 38) then
+				if CurrentAction == 'shop_menu' then
+					OpenMainMenu(CurrentActionData.zone)
+				end
+
+				CurrentAction = nil
+			end
+		end
+	end
+end)
