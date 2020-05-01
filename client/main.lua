@@ -117,13 +117,13 @@ function OpenMainMenu(zone)
 		title = _U('weapon_cat'),
 		align = Config.MenuAlign,
 		elements = {
-			{label = _U('wea_melee'),   value = 'wea_melee'},
+			{label = _U('wea_melee'), value = 'wea_melee'},
 			{label = _U('wea_handgun'), value = 'wea_handgun'},
-			{label = _U('wea_smg'),     value = 'wea_smg'},
+			{label = _U('wea_smg'), value = 'wea_smg'},
 			{label = _U('wea_shotgun'), value = 'wea_shotgun'},
 			{label = _U('wea_assault'), value = 'wea_assault'},
-			{label = _U('wea_lmg'),     value = 'wea_lmg'},
-			{label = _U('wea_sniper'),  value = 'wea_sniper'}
+			{label = _U('wea_lmg'), value = 'wea_lmg'},
+			{label = _U('wea_sniper'), value = 'wea_sniper'}
 	}}, function(data, menu)
 		local value = data.current.value
 		local wvalue = value
@@ -554,20 +554,22 @@ end)
 
 -- Create Blips
 Citizen.CreateThread(function()
-	for k,v in pairs(Config.Zones) do
-		if v.Legal then
-			for i = 1, #v.Locations, 1 do
-				local blip = AddBlipForCoord(v.Locations[i])
+	if Config.UseBlips then
+		for k,v in pairs(Config.Zones) do
+			if v.Legal then
+				for i = 1, #v.Locations, 1 do
+					local blip = AddBlipForCoord(v.Locations[i])
 
-				SetBlipSprite (blip, 110)
-				SetBlipDisplay(blip, 4)
-				SetBlipScale  (blip, 1.0)
-				SetBlipColour (blip, 81)
-				SetBlipAsShortRange(blip, true)
+					SetBlipSprite (blip, 110)
+					SetBlipDisplay(blip, 4)
+					SetBlipScale  (blip, 1.0)
+					SetBlipColour (blip, 81)
+					SetBlipAsShortRange(blip, true)
 
-				BeginTextCommandSetBlipName("STRING")
-				AddTextComponentSubstringPlayerName(_U('map_blip'))
-				EndTextCommandSetBlipName(blip)
+					BeginTextCommandSetBlipName("STRING")
+					AddTextComponentSubstringPlayerName(_U('map_blip'))
+					EndTextCommandSetBlipName(blip)
+				end
 			end
 		end
 	end

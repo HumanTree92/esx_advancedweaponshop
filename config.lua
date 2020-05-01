@@ -5,6 +5,7 @@ Config.MenuAlign = 'top-left'
 Config.DrawDistance  = 100
 Config.MarkerInfo = {Type = 1, r = 0, g = 128, b = 255, x = 1.5, y = 1.5, z = 0.5}
 
+Config.UseBlips = false -- true = Use Weapon Shop Blips
 Config.LicenseEnable = true -- Only turn this on if using esx_license
 Config.RequireMeleeLicense = true -- Will Require Players to have Melee License to Purchase Melee Weapons.
 
