@@ -1,6 +1,8 @@
 # About esx_advancedweaponshop:
 Advanced Weapon Shop for ESX - Edited/Made by Human Tree92 ([Velociti Entertainment Customs & Wiki](http://www.velocitientertainment.com/customs/))
 
+I can not Guarantee that this will work with the Latest es_extended V2.
+
 # Helpfull Info:
 * This Weapon Shops works similar to esx_weaponshop.
 * Players will be required to own different Licenses to purchase certain Weapons.
@@ -9,7 +11,7 @@ Advanced Weapon Shop for ESX - Edited/Made by Human Tree92 ([Velociti Entertainm
 
 # Requirements:
 * Required:
-  * [es_extended](https://github.com/ESX-Org/es_extended)
+  * [es_extended V1 Final](https://github.com/ESX-Org/es_extended) or [extendedmode](https://github.com/extendedmode/extendedmode)
   * [esx_licenseshop](https://github.com/HumanTree92/esx_licenseshop)
 * Optional:
   * NONE
