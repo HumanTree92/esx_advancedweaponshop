@@ -20,11 +20,11 @@ Advanced Weapon Shop for ESX V1 Final or EXM - Edited/Made by Human Tree92 ([Vel
   * NONE
 
 # Download & Installation:
-1) Download the .zip.
-2) Extract the .zip or Open the .zip.
-3) Import the `esx_advancedweaponshop.sql` into your database.
-4) Place `esx_advancedweaponshop` in your ESX Directory
-5) Add `start esx_advancedweaponshop` to your server.cfg
+1) Download Master or Release & Extract the .zip or Open the .zip.
+2) Import the `esx_advancedweaponshop.sql` into your database.
+3) Place `esx_advancedweaponshop` in your ESX Directory
+4) Add `start esx_advancedweaponshop` to your server.cfg
+5) Add `setr esx_MenuAlign "top-right"` to your server.cfg
 
 # Credits/Original Code:
 * [ESX-Org](https://github.com/ESX-Org)

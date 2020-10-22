@@ -115,7 +115,7 @@ function OpenMainMenu(zone)
 
 	ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'weapon_cat', {
 		title = _U('weapon_cat'),
-		align = Config.MenuAlign,
+		align = GetConvar('esx_MenuAlign', 'top-left'),
 		elements = {
 			{label = _U('wea_melee'), value = 'wea_melee'},
 			{label = _U('wea_handgun'), value = 'wea_handgun'},
@@ -255,7 +255,7 @@ function OpenShopMenu(wvalue, zone)
 
 		ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'shop', {
 			title = _U('shop_menu_title'),
-			align = Config.MenuAlign,
+			align = GetConvar('esx_MenuAlign', 'top-left'),
 			elements = elements
 		}, function(data, menu)
 			ESX.TriggerServerCallback('esx_advancedweaponshop:buyWeapon', function(bought)
@@ -292,7 +292,7 @@ function OpenShopMenu(wvalue, zone)
 
 		ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'shop', {
 			title = _U('shop_menu_title'),
-			align = Config.MenuAlign,
+			align = GetConvar('esx_MenuAlign', 'top-left'),
 			elements = elements
 		}, function(data, menu)
 			ESX.TriggerServerCallback('esx_advancedweaponshop:buyWeapon', function(bought)
@@ -329,7 +329,7 @@ function OpenShopMenu(wvalue, zone)
 
 		ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'shop', {
 			title = _U('shop_menu_title'),
-			align = Config.MenuAlign,
+			align = GetConvar('esx_MenuAlign', 'top-left'),
 			elements = elements
 		}, function(data, menu)
 			ESX.TriggerServerCallback('esx_advancedweaponshop:buyWeapon', function(bought)
@@ -366,7 +366,7 @@ function OpenShopMenu(wvalue, zone)
 
 		ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'shop', {
 			title = _U('shop_menu_title'),
-			align = Config.MenuAlign,
+			align = GetConvar('esx_MenuAlign', 'top-left'),
 			elements = elements
 		}, function(data, menu)
 			ESX.TriggerServerCallback('esx_advancedweaponshop:buyWeapon', function(bought)
@@ -403,7 +403,7 @@ function OpenShopMenu(wvalue, zone)
 
 		ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'shop', {
 			title = _U('shop_menu_title'),
-			align = Config.MenuAlign,
+			align = GetConvar('esx_MenuAlign', 'top-left'),
 			elements = elements
 		}, function(data, menu)
 			ESX.TriggerServerCallback('esx_advancedweaponshop:buyWeapon', function(bought)
@@ -440,7 +440,7 @@ function OpenShopMenu(wvalue, zone)
 
 		ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'shop', {
 			title = _U('shop_menu_title'),
-			align = Config.MenuAlign,
+			align = GetConvar('esx_MenuAlign', 'top-left'),
 			elements = elements
 		}, function(data, menu)
 			ESX.TriggerServerCallback('esx_advancedweaponshop:buyWeapon', function(bought)
@@ -477,7 +477,7 @@ function OpenShopMenu(wvalue, zone)
 
 		ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'shop', {
 			title = _U('shop_menu_title'),
-			align = Config.MenuAlign,
+			align = GetConvar('esx_MenuAlign', 'top-left'),
 			elements = elements
 		}, function(data, menu)
 			ESX.TriggerServerCallback('esx_advancedweaponshop:buyWeapon', function(bought)

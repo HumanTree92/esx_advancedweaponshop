@@ -1,5 +1,4 @@
 local shopMelee, shopHandgun, shopSMG, shopShotgun, shopAssault, shopLMG, shopSniper = {}, {}, {}, {}, {}, {}, {}
-
 ESX = nil
 
 TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
