@@ -4,7 +4,6 @@ ESX = nil
 TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 
 MySQL.ready(function()
-
 	-- Get/Send Melee Weapons
 	MySQL.Async.fetchAll('SELECT * FROM weaponshops WHERE category = @category', {
 		['@category'] = 'melee'
