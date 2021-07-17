@@ -1,7 +1,7 @@
 Config = {}
 Config.Locale = 'en'
 
-Config.DrawDistance  = 10
+Config.DrawDistance = 10
 Config.MarkerInfo = {Type = 1, r = 0, g = 128, b = 255, x = 1.5, y = 1.5, z = 0.5}
 
 Config.UseBlips = false -- true = Use Weapon Shop Blips
@@ -11,7 +11,6 @@ Config.RequireMeleeLicense = true -- Will Require Players to have Melee License 
 Config.Zones = {
 	GunShop = {
 		Legal = true,
-		Items = {},
 		Items1 = {},
 		Items2 = {},
 		Items3 = {},
@@ -19,6 +18,8 @@ Config.Zones = {
 		Items5 = {},
 		Items6 = {},
 		Items7 = {},
+		Items8 = {},
+		Items9 = {},
 		Locations = {
 			vector3(-662.1, -935.3, 20.8),
 			vector3(810.2, -2157.3, 28.6),
@@ -36,7 +37,6 @@ Config.Zones = {
 
 	BlackShop = {
 		Legal = false,
-		Items = {},
 		Items1 = {},
 		Items2 = {},
 		Items3 = {},
@@ -44,6 +44,8 @@ Config.Zones = {
 		Items5 = {},
 		Items6 = {},
 		Items7 = {},
+		Items8 = {},
+		Items9 = {},
 		Locations = {
 			vector3(119.47, -1977.88, 19.93)
 		}

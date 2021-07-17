@@ -9,55 +9,91 @@ Citizen.CreateThread(function()
 		Citizen.Wait(0)
 	end
 
-	-- Get Melee Weapons
-	ESX.TriggerServerCallback('esx_advancedweaponshop:getMelee', function(shopMelee)
-		for k,v in pairs(shopMelee) do
+	-- Get Misc Weapons
+	ESX.TriggerServerCallback('esx_advancedweaponshop:getMisc', function(shopMisc)
+		for k,v in pairs(shopMisc) do
 			Config.Zones[k].Items1 = v
 		end
 	end)
-	-- Get Handguns
-	ESX.TriggerServerCallback('esx_advancedweaponshop:getHandgun', function(shopHandgun)
-		for k,v in pairs(shopHandgun) do
+
+	-- Get Throwables
+	ESX.TriggerServerCallback('esx_advancedweaponshop:getThrow', function(shopThrow)
+		for k,v in pairs(shopThrow) do
 			Config.Zones[k].Items2 = v
 		end
 	end)
-	-- Get SMGs
-	ESX.TriggerServerCallback('esx_advancedweaponshop:getSMG', function(shopSMG)
-		for k,v in pairs(shopSMG) do
+
+	-- Get Melee Weapons
+	ESX.TriggerServerCallback('esx_advancedweaponshop:getMelee', function(shopMelee)
+		for k,v in pairs(shopMelee) do
 			Config.Zones[k].Items3 = v
 		end
 	end)
-	-- Get Shotguns
-	ESX.TriggerServerCallback('esx_advancedweaponshop:getShotgun', function(shopShotgun)
-		for k,v in pairs(shopShotgun) do
+
+	-- Get Handguns
+	ESX.TriggerServerCallback('esx_advancedweaponshop:getHandgun', function(shopHandgun)
+		for k,v in pairs(shopHandgun) do
 			Config.Zones[k].Items4 = v
 		end
 	end)
-	-- Get Assault Rifles
-	ESX.TriggerServerCallback('esx_advancedweaponshop:getAssault', function(shopAssault)
-		for k,v in pairs(shopAssault) do
+
+	-- Get SMGs
+	ESX.TriggerServerCallback('esx_advancedweaponshop:getSMG', function(shopSMG)
+		for k,v in pairs(shopSMG) do
 			Config.Zones[k].Items5 = v
 		end
 	end)
-	-- Get LMGs
-	ESX.TriggerServerCallback('esx_advancedweaponshop:getLMG', function(shopLMG)
-		for k,v in pairs(shopLMG) do
+
+	-- Get Shotguns
+	ESX.TriggerServerCallback('esx_advancedweaponshop:getShotgun', function(shopShotgun)
+		for k,v in pairs(shopShotgun) do
 			Config.Zones[k].Items6 = v
 		end
 	end)
-	-- Get Sniper Rifles
-	ESX.TriggerServerCallback('esx_advancedweaponshop:getSniper', function(shopSniper)
-		for k,v in pairs(shopSniper) do
+
+	-- Get Assault Rifles
+	ESX.TriggerServerCallback('esx_advancedweaponshop:getAssault', function(shopAssault)
+		for k,v in pairs(shopAssault) do
 			Config.Zones[k].Items7 = v
 		end
 	end)
+
+	-- Get LMGs
+	ESX.TriggerServerCallback('esx_advancedweaponshop:getLMG', function(shopLMG)
+		for k,v in pairs(shopLMG) do
+			Config.Zones[k].Items8 = v
+		end
+	end)
+
+	-- Get Sniper Rifles
+	ESX.TriggerServerCallback('esx_advancedweaponshop:getSniper', function(shopSniper)
+		for k,v in pairs(shopSniper) do
+			Config.Zones[k].Items9 = v
+		end
+	end)
+end)
+
+-- Send Misc Weapons
+RegisterNetEvent('esx_advancedweaponshop:sendMisc')
+AddEventHandler('esx_advancedweaponshop:sendMisc', function(shopMisc)
+	for k,v in pairs(shopMisc) do
+		Config.Zones[k].Items1 = v
+	end
+end)
+
+-- Send Throwables
+RegisterNetEvent('esx_advancedweaponshop:sendThrow')
+AddEventHandler('esx_advancedweaponshop:sendThrow', function(shopThrow)
+	for k,v in pairs(shopThrow) do
+		Config.Zones[k].Items2 = v
+	end
 end)
 
 -- Send Melee Weapons
 RegisterNetEvent('esx_advancedweaponshop:sendMelee')
 AddEventHandler('esx_advancedweaponshop:sendMelee', function(shopMelee)
 	for k,v in pairs(shopMelee) do
-		Config.Zones[k].Items1 = v
+		Config.Zones[k].Items3 = v
 	end
 end)
 
@@ -65,7 +101,7 @@ end)
 RegisterNetEvent('esx_advancedweaponshop:sendHandgun')
 AddEventHandler('esx_advancedweaponshop:sendHandgun', function(shopHandgun)
 	for k,v in pairs(shopHandgun) do
-		Config.Zones[k].Items2 = v
+		Config.Zones[k].Items4 = v
 	end
 end)
 
@@ -73,7 +109,7 @@ end)
 RegisterNetEvent('esx_advancedweaponshop:sendSMG')
 AddEventHandler('esx_advancedweaponshop:sendSMG', function(shopSMG)
 	for k,v in pairs(shopSMG) do
-		Config.Zones[k].Items3 = v
+		Config.Zones[k].Items5 = v
 	end
 end)
 
@@ -81,7 +117,7 @@ end)
 RegisterNetEvent('esx_advancedweaponshop:sendShotgun')
 AddEventHandler('esx_advancedweaponshop:sendShotgun', function(shopShotgun)
 	for k,v in pairs(shopShotgun) do
-		Config.Zones[k].Items4 = v
+		Config.Zones[k].Items6 = v
 	end
 end)
 
@@ -89,7 +125,7 @@ end)
 RegisterNetEvent('esx_advancedweaponshop:sendAssault')
 AddEventHandler('esx_advancedweaponshop:sendAssault', function(shopAssault)
 	for k,v in pairs(shopAssault) do
-		Config.Zones[k].Items5 = v
+		Config.Zones[k].Items7 = v
 	end
 end)
 
@@ -97,7 +133,7 @@ end)
 RegisterNetEvent('esx_advancedweaponshop:sendLMG')
 AddEventHandler('esx_advancedweaponshop:sendLMG', function(shopLMG)
 	for k,v in pairs(shopLMG) do
-		Config.Zones[k].Items6 = v
+		Config.Zones[k].Items8 = v
 	end
 end)
 
@@ -105,18 +141,19 @@ end)
 RegisterNetEvent('esx_advancedweaponshop:sendSniper')
 AddEventHandler('esx_advancedweaponshop:sendSniper', function(shopSniper)
 	for k,v in pairs(shopSniper) do
-		Config.Zones[k].Items7 = v
+		Config.Zones[k].Items9 = v
 	end
 end)
 
 -- Open Main Menu
 function OpenMainMenu(zone)
 	ESX.UI.Menu.CloseAll()
-
 	ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'weapon_cat', {
 		title = _U('weapon_cat'),
 		align = GetConvar('esx_MenuAlign', 'top-left'),
 		elements = {
+			{label = _U('wea_misc'), value = 'wea_misc'},
+			{label = _U('wea_throw'), value = 'wea_throw'},
 			{label = _U('wea_melee'), value = 'wea_melee'},
 			{label = _U('wea_handgun'), value = 'wea_handgun'},
 			{label = _U('wea_smg'), value = 'wea_smg'},
@@ -125,110 +162,120 @@ function OpenMainMenu(zone)
 			{label = _U('wea_lmg'), value = 'wea_lmg'},
 			{label = _U('wea_sniper'), value = 'wea_sniper'}
 	}}, function(data, menu)
-		local value = data.current.value
-		local wvalue = value
+		local action = data.current.value
 
-		if data.current.value == 'wea_melee' then
+		if action == 'wea_misc' then
+			if Config.Zones[zone].Legal then
+				menu.close()
+				OpenShopMenu(action, zone)
+			else
+				ESX.ShowNotification(_U('no_wea'))
+			end
+		elseif action == 'wea_throw' then
+			if Config.Zones[zone].Legal then
+				menu.close()
+				OpenShopMenu(action, zone)
+			else
+				menu.close()
+				OpenShopMenu(action, zone)
+			end
+		elseif action == 'wea_melee' then
 			if Config.LicenseEnable and Config.RequireMeleeLicense and Config.Zones[zone].Legal then
 				ESX.TriggerServerCallback('esx_license:checkLicense', function(hasLicense)
 					if hasLicense then
 						menu.close()
-						OpenShopMenu(wvalue, zone)
+						OpenShopMenu(action, zone)
 					else
 						ESX.ShowNotification(_U('go_to'))
 					end
 				end, GetPlayerServerId(PlayerId()), 'weapon_melee')
 			else
 				menu.close()
-				OpenShopMenu(wvalue, zone)
+				OpenShopMenu(action, zone)
 			end
-		elseif data.current.value == 'wea_handgun' then
+		elseif action == 'wea_handgun' then
 			if Config.LicenseEnable and Config.Zones[zone].Legal then
 				ESX.TriggerServerCallback('esx_license:checkLicense', function(hasLicense)
 					if hasLicense then
 						menu.close()
-						OpenShopMenu(wvalue, zone)
+						OpenShopMenu(action, zone)
 					else
 						ESX.ShowNotification(_U('go_to'))
 					end
 				end, GetPlayerServerId(PlayerId()), 'weapon_handgun')
 			else
 				menu.close()
-				OpenShopMenu(wvalue, zone)
+				OpenShopMenu(action, zone)
 			end
-		elseif data.current.value == 'wea_smg' then
+		elseif action == 'wea_smg' then
 			if Config.LicenseEnable and Config.Zones[zone].Legal then
 				ESX.TriggerServerCallback('esx_license:checkLicense', function(hasLicense)
 					if hasLicense then
 						menu.close()
-						OpenShopMenu(wvalue, zone)
+						OpenShopMenu(action, zone)
 					else
 						ESX.ShowNotification(_U('go_to'))
 					end
 				end, GetPlayerServerId(PlayerId()), 'weapon_smg')
 			else
 				menu.close()
-				OpenShopMenu(wvalue, zone)
+				OpenShopMenu(action, zone)
 			end
-		elseif data.current.value == 'wea_shotgun' then
+		elseif action == 'wea_shotgun' then
 			if Config.LicenseEnable and Config.Zones[zone].Legal then
 				ESX.TriggerServerCallback('esx_license:checkLicense', function(hasLicense)
 					if hasLicense then
 						menu.close()
-						OpenShopMenu(wvalue, zone)
+						OpenShopMenu(action, zone)
 					else
 						ESX.ShowNotification(_U('go_to'))
 					end
 				end, GetPlayerServerId(PlayerId()), 'weapon_shotgun')
 			else
 				menu.close()
-				OpenShopMenu(wvalue, zone)
+				OpenShopMenu(action, zone)
 			end
-		elseif data.current.value == 'wea_assault' then
+		elseif action == 'wea_assault' then
 			if Config.LicenseEnable and Config.Zones[zone].Legal then
 				ESX.TriggerServerCallback('esx_license:checkLicense', function(hasLicense)
 					if hasLicense then
 						menu.close()
-						OpenShopMenu(wvalue, zone)
+						OpenShopMenu(action, zone)
 					else
 						ESX.ShowNotification(_U('go_to'))
 					end
 				end, GetPlayerServerId(PlayerId()), 'weapon_assault')
 			else
 				menu.close()
-				OpenShopMenu(wvalue, zone)
+				OpenShopMenu(action, zone)
 			end
-		elseif data.current.value == 'wea_lmg' then
+		elseif action == 'wea_lmg' then
 			if Config.LicenseEnable and Config.Zones[zone].Legal then
 				ESX.TriggerServerCallback('esx_license:checkLicense', function(hasLicense)
 					if hasLicense then
 						menu.close()
-						OpenShopMenu(wvalue, zone)
+						OpenShopMenu(action, zone)
 					else
 						ESX.ShowNotification(_U('go_to'))
 					end
 				end, GetPlayerServerId(PlayerId()), 'weapon_lmg')
 			else
-				menu.close()
 				ESX.ShowNotification(_U('no_wea'))
 			end
-		elseif data.current.value == 'wea_sniper' then
+		elseif action == 'wea_sniper' then
 			if Config.LicenseEnable and Config.Zones[zone].Legal then
 				ESX.TriggerServerCallback('esx_license:checkLicense', function(hasLicense)
 					if hasLicense then
 						menu.close()
-						OpenShopMenu(wvalue, zone)
+						OpenShopMenu(action, zone)
 					else
 						ESX.ShowNotification(_U('go_to'))
 					end
 				end, GetPlayerServerId(PlayerId()), 'weapon_sniper')
 			else
-				menu.close()
 				ESX.ShowNotification(_U('no_wea'))
 			end
 		end
-
-		menu.close()
 	end, function(data, menu)
 		menu.close()
 	end)
@@ -239,7 +286,7 @@ function OpenShopMenu(wvalue, zone)
 	local elements = {}
 	IsInShopMenu = true
 
-	if wvalue == 'wea_melee' then
+	if wvalue == 'wea_misc' then
 		for i=1, #Config.Zones[zone].Items1, 1 do
 			local item = Config.Zones[zone].Items1[i]
 
@@ -269,14 +316,14 @@ function OpenShopMenu(wvalue, zone)
 			PlaySoundFrontend(-1, 'BACK', 'HUD_AMMO_SHOP_SOUNDSET', false)
 			IsInShopMenu = false
 			menu.close()
+			OpenMainMenu(zone)
 
 			CurrentAction = 'shop_menu'
-			CurrentActionMsg = _U('shop_menu_prompt')
 			CurrentActionData = {zone = zone}
 		end, function(data, menu)
 			PlaySoundFrontend(-1, 'NAV', 'HUD_AMMO_SHOP_SOUNDSET', false)
 		end)
-	elseif wvalue == 'wea_handgun' then
+	elseif wvalue == 'wea_throw' then
 		for i=1, #Config.Zones[zone].Items2, 1 do
 			local item = Config.Zones[zone].Items2[i]
 
@@ -306,14 +353,14 @@ function OpenShopMenu(wvalue, zone)
 			PlaySoundFrontend(-1, 'BACK', 'HUD_AMMO_SHOP_SOUNDSET', false)
 			IsInShopMenu = false
 			menu.close()
+			OpenMainMenu(zone)
 
 			CurrentAction = 'shop_menu'
-			CurrentActionMsg = _U('shop_menu_prompt')
 			CurrentActionData = {zone = zone}
 		end, function(data, menu)
 			PlaySoundFrontend(-1, 'NAV', 'HUD_AMMO_SHOP_SOUNDSET', false)
 		end)
-	elseif wvalue == 'wea_smg' then
+	elseif wvalue == 'wea_melee' then
 		for i=1, #Config.Zones[zone].Items3, 1 do
 			local item = Config.Zones[zone].Items3[i]
 
@@ -343,14 +390,14 @@ function OpenShopMenu(wvalue, zone)
 			PlaySoundFrontend(-1, 'BACK', 'HUD_AMMO_SHOP_SOUNDSET', false)
 			IsInShopMenu = false
 			menu.close()
+			OpenMainMenu(zone)
 
 			CurrentAction = 'shop_menu'
-			CurrentActionMsg = _U('shop_menu_prompt')
 			CurrentActionData = {zone = zone}
 		end, function(data, menu)
 			PlaySoundFrontend(-1, 'NAV', 'HUD_AMMO_SHOP_SOUNDSET', false)
 		end)
-	elseif wvalue == 'wea_shotgun' then
+	elseif wvalue == 'wea_handgun' then
 		for i=1, #Config.Zones[zone].Items4, 1 do
 			local item = Config.Zones[zone].Items4[i]
 
@@ -380,14 +427,14 @@ function OpenShopMenu(wvalue, zone)
 			PlaySoundFrontend(-1, 'BACK', 'HUD_AMMO_SHOP_SOUNDSET', false)
 			IsInShopMenu = false
 			menu.close()
+			OpenMainMenu(zone)
 
 			CurrentAction = 'shop_menu'
-			CurrentActionMsg = _U('shop_menu_prompt')
 			CurrentActionData = {zone = zone}
 		end, function(data, menu)
 			PlaySoundFrontend(-1, 'NAV', 'HUD_AMMO_SHOP_SOUNDSET', false)
 		end)
-	elseif wvalue == 'wea_assault' then
+	elseif wvalue == 'wea_smg' then
 		for i=1, #Config.Zones[zone].Items5, 1 do
 			local item = Config.Zones[zone].Items5[i]
 
@@ -417,14 +464,14 @@ function OpenShopMenu(wvalue, zone)
 			PlaySoundFrontend(-1, 'BACK', 'HUD_AMMO_SHOP_SOUNDSET', false)
 			IsInShopMenu = false
 			menu.close()
+			OpenMainMenu(zone)
 
 			CurrentAction = 'shop_menu'
-			CurrentActionMsg = _U('shop_menu_prompt')
 			CurrentActionData = {zone = zone}
 		end, function(data, menu)
 			PlaySoundFrontend(-1, 'NAV', 'HUD_AMMO_SHOP_SOUNDSET', false)
 		end)
-	elseif wvalue == 'wea_lmg' then
+	elseif wvalue == 'wea_shotgun' then
 		for i=1, #Config.Zones[zone].Items6, 1 do
 			local item = Config.Zones[zone].Items6[i]
 
@@ -454,14 +501,14 @@ function OpenShopMenu(wvalue, zone)
 			PlaySoundFrontend(-1, 'BACK', 'HUD_AMMO_SHOP_SOUNDSET', false)
 			IsInShopMenu = false
 			menu.close()
+			OpenMainMenu(zone)
 
 			CurrentAction = 'shop_menu'
-			CurrentActionMsg = _U('shop_menu_prompt')
 			CurrentActionData = {zone = zone}
 		end, function(data, menu)
 			PlaySoundFrontend(-1, 'NAV', 'HUD_AMMO_SHOP_SOUNDSET', false)
 		end)
-	elseif wvalue == 'wea_sniper' then
+	elseif wvalue == 'wea_assault' then
 		for i=1, #Config.Zones[zone].Items7, 1 do
 			local item = Config.Zones[zone].Items7[i]
 
@@ -491,9 +538,83 @@ function OpenShopMenu(wvalue, zone)
 			PlaySoundFrontend(-1, 'BACK', 'HUD_AMMO_SHOP_SOUNDSET', false)
 			IsInShopMenu = false
 			menu.close()
+			OpenMainMenu(zone)
 
 			CurrentAction = 'shop_menu'
-			CurrentActionMsg = _U('shop_menu_prompt')
+			CurrentActionData = {zone = zone}
+		end, function(data, menu)
+			PlaySoundFrontend(-1, 'NAV', 'HUD_AMMO_SHOP_SOUNDSET', false)
+		end)
+	elseif wvalue == 'wea_lmg' then
+		for i=1, #Config.Zones[zone].Items8, 1 do
+			local item = Config.Zones[zone].Items8[i]
+
+			table.insert(elements, {
+				label = ('%s - <span style="color: green;">%s</span>'):format(item.label, _U('shop_menu_item', ESX.Math.GroupDigits(item.price))),
+				price = item.price,
+				weaponName = item.item
+			})
+		end
+
+		ESX.UI.Menu.CloseAll()
+		PlaySoundFrontend(-1, 'BACK', 'HUD_AMMO_SHOP_SOUNDSET', false)
+
+		ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'shop', {
+			title = _U('shop_menu_title'),
+			align = GetConvar('esx_MenuAlign', 'top-left'),
+			elements = elements
+		}, function(data, menu)
+			ESX.TriggerServerCallback('esx_advancedweaponshop:buyWeapon', function(bought)
+				if bought then
+					DisplayBoughtScaleform(data.current.weaponName, data.current.price)
+				else
+					PlaySoundFrontend(-1, 'ERROR', 'HUD_AMMO_SHOP_SOUNDSET', false)
+				end
+			end, data.current.weaponName, zone)
+		end, function(data, menu)
+			PlaySoundFrontend(-1, 'BACK', 'HUD_AMMO_SHOP_SOUNDSET', false)
+			IsInShopMenu = false
+			menu.close()
+			OpenMainMenu(zone)
+
+			CurrentAction = 'shop_menu'
+			CurrentActionData = {zone = zone}
+		end, function(data, menu)
+			PlaySoundFrontend(-1, 'NAV', 'HUD_AMMO_SHOP_SOUNDSET', false)
+		end)
+	elseif wvalue == 'wea_sniper' then
+		for i=1, #Config.Zones[zone].Items9, 1 do
+			local item = Config.Zones[zone].Items9[i]
+
+			table.insert(elements, {
+				label = ('%s - <span style="color: green;">%s</span>'):format(item.label, _U('shop_menu_item', ESX.Math.GroupDigits(item.price))),
+				price = item.price,
+				weaponName = item.item
+			})
+		end
+
+		ESX.UI.Menu.CloseAll()
+		PlaySoundFrontend(-1, 'BACK', 'HUD_AMMO_SHOP_SOUNDSET', false)
+
+		ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'shop', {
+			title = _U('shop_menu_title'),
+			align = GetConvar('esx_MenuAlign', 'top-left'),
+			elements = elements
+		}, function(data, menu)
+			ESX.TriggerServerCallback('esx_advancedweaponshop:buyWeapon', function(bought)
+				if bought then
+					DisplayBoughtScaleform(data.current.weaponName, data.current.price)
+				else
+					PlaySoundFrontend(-1, 'ERROR', 'HUD_AMMO_SHOP_SOUNDSET', false)
+				end
+			end, data.current.weaponName, zone)
+		end, function(data, menu)
+			PlaySoundFrontend(-1, 'BACK', 'HUD_AMMO_SHOP_SOUNDSET', false)
+			IsInShopMenu = false
+			menu.close()
+			OpenMainMenu(zone)
+
+			CurrentAction = 'shop_menu'
 			CurrentActionData = {zone = zone}
 		end, function(data, menu)
 			PlaySoundFrontend(-1, 'NAV', 'HUD_AMMO_SHOP_SOUNDSET', false)

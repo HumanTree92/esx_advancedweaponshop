@@ -1,9 +1,47 @@
-local shopMelee, shopHandgun, shopSMG, shopShotgun, shopAssault, shopLMG, shopSniper = {}, {}, {}, {}, {}, {}, {}
+local shopMisc, shopThrow, shopMelee, shopHandgun, shopSMG, shopShotgun, shopAssault, shopLMG, shopSniper = {}, {}, {}, {}, {}, {}, {}, {}, {}
 ESX = nil
 
 TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 
 MySQL.ready(function()
+	-- Get/Send Misc Weapons
+	MySQL.Async.fetchAll('SELECT * FROM weaponshops WHERE category = @category', {
+		['@category'] = 'misc'
+	}, function(shopMiscResult)
+		for i=1, #shopMiscResult, 1 do
+			if shopMisc[shopMiscResult[i].zone] == nil then
+				shopMisc[shopMiscResult[i].zone] = {}
+			end
+			
+			table.insert(shopMisc[shopMiscResult[i].zone], {
+				item = shopMiscResult[i].item,
+				price = shopMiscResult[i].price,
+				label = ESX.GetWeaponLabel(shopMiscResult[i].item)
+			})
+		end
+
+		TriggerClientEvent('esx_advancedweaponshop:sendMisc', -1, shopMisc)
+	end)
+
+	-- Get/Send Throwables
+	MySQL.Async.fetchAll('SELECT * FROM weaponshops WHERE category = @category', {
+		['@category'] = 'throw'
+	}, function(shopThrowResult)
+		for i=1, #shopThrowResult, 1 do
+			if shopThrow[shopThrowResult[i].zone] == nil then
+				shopThrow[shopThrowResult[i].zone] = {}
+			end
+			
+			table.insert(shopThrow[shopThrowResult[i].zone], {
+				item = shopThrowResult[i].item,
+				price = shopThrowResult[i].price,
+				label = ESX.GetWeaponLabel(shopThrowResult[i].item)
+			})
+		end
+
+		TriggerClientEvent('esx_advancedweaponshop:sendThrow', -1, shopThrow)
+	end)
+
 	-- Get/Send Melee Weapons
 	MySQL.Async.fetchAll('SELECT * FROM weaponshops WHERE category = @category', {
 		['@category'] = 'melee'
@@ -136,7 +174,14 @@ MySQL.ready(function()
 
 		TriggerClientEvent('esx_advancedweaponshop:sendSniper', -1, shopSniper)
 	end)
+end)
 
+ESX.RegisterServerCallback('esx_advancedweaponshop:getMisc', function(source, cb)
+	cb(shopMisc)
+end)
+
+ESX.RegisterServerCallback('esx_advancedweaponshop:getThrow', function(source, cb)
+	cb(shopThrow)
 end)
 
 ESX.RegisterServerCallback('esx_advancedweaponshop:getMelee', function(source, cb)
