@@ -1,7 +1,4 @@
 local shopMisc, shopThrow, shopMelee, shopHandgun, shopSMG, shopShotgun, shopAssault, shopLMG, shopSniper = {}, {}, {}, {}, {}, {}, {}, {}, {}
-ESX = nil
-
-TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 
 MySQL.ready(function()
 	-- Get/Send Misc Weapons

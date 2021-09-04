@@ -1,13 +1,10 @@
 local HasAlreadyEnteredMarker, IsInShopMenu = false, false
 local CurrentAction, CurrentActionMsg, LastZone
 local CurrentActionData = {}
-ESX = nil
 
-Citizen.CreateThread(function()
-	while ESX == nil do
-		TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
-		Citizen.Wait(0)
-	end
+RegisterNetEvent('esx:playerLoaded')
+AddEventHandler('esx:playerLoaded', function(xPlayer)
+	ESX.PlayerData = xPlayer
 
 	-- Get Misc Weapons
 	ESX.TriggerServerCallback('esx_advancedweaponshop:getMisc', function(shopMisc)
