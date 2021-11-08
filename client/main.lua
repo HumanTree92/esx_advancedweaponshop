@@ -9,63 +9,63 @@ AddEventHandler('esx:playerLoaded', function(xPlayer)
 	-- Get Misc Weapons
 	ESX.TriggerServerCallback('esx_advancedweaponshop:getMisc', function(shopMisc)
 		for k,v in pairs(shopMisc) do
-			Config.Zones[k].Items1 = v
+			Config.Zones[k].Misc = v
 		end
 	end)
 
 	-- Get Throwables
 	ESX.TriggerServerCallback('esx_advancedweaponshop:getThrow', function(shopThrow)
 		for k,v in pairs(shopThrow) do
-			Config.Zones[k].Items2 = v
+			Config.Zones[k].Throw = v
 		end
 	end)
 
 	-- Get Melee Weapons
 	ESX.TriggerServerCallback('esx_advancedweaponshop:getMelee', function(shopMelee)
 		for k,v in pairs(shopMelee) do
-			Config.Zones[k].Items3 = v
+			Config.Zones[k].Melee = v
 		end
 	end)
 
 	-- Get Handguns
 	ESX.TriggerServerCallback('esx_advancedweaponshop:getHandgun', function(shopHandgun)
 		for k,v in pairs(shopHandgun) do
-			Config.Zones[k].Items4 = v
+			Config.Zones[k].Handgun = v
 		end
 	end)
 
 	-- Get SMGs
 	ESX.TriggerServerCallback('esx_advancedweaponshop:getSMG', function(shopSMG)
 		for k,v in pairs(shopSMG) do
-			Config.Zones[k].Items5 = v
+			Config.Zones[k].SMG = v
 		end
 	end)
 
 	-- Get Shotguns
 	ESX.TriggerServerCallback('esx_advancedweaponshop:getShotgun', function(shopShotgun)
 		for k,v in pairs(shopShotgun) do
-			Config.Zones[k].Items6 = v
+			Config.Zones[k].Shotgun = v
 		end
 	end)
 
 	-- Get Assault Rifles
 	ESX.TriggerServerCallback('esx_advancedweaponshop:getAssault', function(shopAssault)
 		for k,v in pairs(shopAssault) do
-			Config.Zones[k].Items7 = v
+			Config.Zones[k].Assault = v
 		end
 	end)
 
 	-- Get LMGs
 	ESX.TriggerServerCallback('esx_advancedweaponshop:getLMG', function(shopLMG)
 		for k,v in pairs(shopLMG) do
-			Config.Zones[k].Items8 = v
+			Config.Zones[k].LMG = v
 		end
 	end)
 
 	-- Get Sniper Rifles
 	ESX.TriggerServerCallback('esx_advancedweaponshop:getSniper', function(shopSniper)
 		for k,v in pairs(shopSniper) do
-			Config.Zones[k].Items9 = v
+			Config.Zones[k].Sniper = v
 		end
 	end)
 end)
@@ -74,7 +74,7 @@ end)
 RegisterNetEvent('esx_advancedweaponshop:sendMisc')
 AddEventHandler('esx_advancedweaponshop:sendMisc', function(shopMisc)
 	for k,v in pairs(shopMisc) do
-		Config.Zones[k].Items1 = v
+		Config.Zones[k].Misc = v
 	end
 end)
 
@@ -82,7 +82,7 @@ end)
 RegisterNetEvent('esx_advancedweaponshop:sendThrow')
 AddEventHandler('esx_advancedweaponshop:sendThrow', function(shopThrow)
 	for k,v in pairs(shopThrow) do
-		Config.Zones[k].Items2 = v
+		Config.Zones[k].Throw = v
 	end
 end)
 
@@ -90,7 +90,7 @@ end)
 RegisterNetEvent('esx_advancedweaponshop:sendMelee')
 AddEventHandler('esx_advancedweaponshop:sendMelee', function(shopMelee)
 	for k,v in pairs(shopMelee) do
-		Config.Zones[k].Items3 = v
+		Config.Zones[k].Melee = v
 	end
 end)
 
@@ -98,7 +98,7 @@ end)
 RegisterNetEvent('esx_advancedweaponshop:sendHandgun')
 AddEventHandler('esx_advancedweaponshop:sendHandgun', function(shopHandgun)
 	for k,v in pairs(shopHandgun) do
-		Config.Zones[k].Items4 = v
+		Config.Zones[k].Handgun = v
 	end
 end)
 
@@ -106,7 +106,7 @@ end)
 RegisterNetEvent('esx_advancedweaponshop:sendSMG')
 AddEventHandler('esx_advancedweaponshop:sendSMG', function(shopSMG)
 	for k,v in pairs(shopSMG) do
-		Config.Zones[k].Items5 = v
+		Config.Zones[k].SMG = v
 	end
 end)
 
@@ -114,7 +114,7 @@ end)
 RegisterNetEvent('esx_advancedweaponshop:sendShotgun')
 AddEventHandler('esx_advancedweaponshop:sendShotgun', function(shopShotgun)
 	for k,v in pairs(shopShotgun) do
-		Config.Zones[k].Items6 = v
+		Config.Zones[k].Shotgun = v
 	end
 end)
 
@@ -122,7 +122,7 @@ end)
 RegisterNetEvent('esx_advancedweaponshop:sendAssault')
 AddEventHandler('esx_advancedweaponshop:sendAssault', function(shopAssault)
 	for k,v in pairs(shopAssault) do
-		Config.Zones[k].Items7 = v
+		Config.Zones[k].Assault = v
 	end
 end)
 
@@ -130,7 +130,7 @@ end)
 RegisterNetEvent('esx_advancedweaponshop:sendLMG')
 AddEventHandler('esx_advancedweaponshop:sendLMG', function(shopLMG)
 	for k,v in pairs(shopLMG) do
-		Config.Zones[k].Items8 = v
+		Config.Zones[k].LMG = v
 	end
 end)
 
@@ -138,7 +138,7 @@ end)
 RegisterNetEvent('esx_advancedweaponshop:sendSniper')
 AddEventHandler('esx_advancedweaponshop:sendSniper', function(shopSniper)
 	for k,v in pairs(shopSniper) do
-		Config.Zones[k].Items9 = v
+		Config.Zones[k].Sniper = v
 	end
 end)
 
@@ -284,8 +284,8 @@ function OpenShopMenu(wvalue, zone)
 	IsInShopMenu = true
 
 	if wvalue == 'wea_misc' then
-		for i=1, #Config.Zones[zone].Items1, 1 do
-			local item = Config.Zones[zone].Items1[i]
+		for i=1, #Config.Zones[zone].Misc, 1 do
+			local item = Config.Zones[zone].Misc[i]
 
 			table.insert(elements, {
 				label = ('%s - <span style="color: green;">%s</span>'):format(item.label, _U('shop_menu_item', ESX.Math.GroupDigits(item.price))),
@@ -321,8 +321,8 @@ function OpenShopMenu(wvalue, zone)
 			PlaySoundFrontend(-1, 'NAV', 'HUD_AMMO_SHOP_SOUNDSET', false)
 		end)
 	elseif wvalue == 'wea_throw' then
-		for i=1, #Config.Zones[zone].Items2, 1 do
-			local item = Config.Zones[zone].Items2[i]
+		for i=1, #Config.Zones[zone].Throw, 1 do
+			local item = Config.Zones[zone].Throw[i]
 
 			table.insert(elements, {
 				label = ('%s - <span style="color: green;">%s</span>'):format(item.label, _U('shop_menu_item', ESX.Math.GroupDigits(item.price))),
@@ -358,8 +358,8 @@ function OpenShopMenu(wvalue, zone)
 			PlaySoundFrontend(-1, 'NAV', 'HUD_AMMO_SHOP_SOUNDSET', false)
 		end)
 	elseif wvalue == 'wea_melee' then
-		for i=1, #Config.Zones[zone].Items3, 1 do
-			local item = Config.Zones[zone].Items3[i]
+		for i=1, #Config.Zones[zone].Melee, 1 do
+			local item = Config.Zones[zone].Melee[i]
 
 			table.insert(elements, {
 				label = ('%s - <span style="color: green;">%s</span>'):format(item.label, _U('shop_menu_item', ESX.Math.GroupDigits(item.price))),
@@ -395,8 +395,8 @@ function OpenShopMenu(wvalue, zone)
 			PlaySoundFrontend(-1, 'NAV', 'HUD_AMMO_SHOP_SOUNDSET', false)
 		end)
 	elseif wvalue == 'wea_handgun' then
-		for i=1, #Config.Zones[zone].Items4, 1 do
-			local item = Config.Zones[zone].Items4[i]
+		for i=1, #Config.Zones[zone].Handgun, 1 do
+			local item = Config.Zones[zone].Handgun[i]
 
 			table.insert(elements, {
 				label = ('%s - <span style="color: green;">%s</span>'):format(item.label, _U('shop_menu_item', ESX.Math.GroupDigits(item.price))),
@@ -432,8 +432,8 @@ function OpenShopMenu(wvalue, zone)
 			PlaySoundFrontend(-1, 'NAV', 'HUD_AMMO_SHOP_SOUNDSET', false)
 		end)
 	elseif wvalue == 'wea_smg' then
-		for i=1, #Config.Zones[zone].Items5, 1 do
-			local item = Config.Zones[zone].Items5[i]
+		for i=1, #Config.Zones[zone].SMG, 1 do
+			local item = Config.Zones[zone].SMG[i]
 
 			table.insert(elements, {
 				label = ('%s - <span style="color: green;">%s</span>'):format(item.label, _U('shop_menu_item', ESX.Math.GroupDigits(item.price))),
@@ -469,8 +469,8 @@ function OpenShopMenu(wvalue, zone)
 			PlaySoundFrontend(-1, 'NAV', 'HUD_AMMO_SHOP_SOUNDSET', false)
 		end)
 	elseif wvalue == 'wea_shotgun' then
-		for i=1, #Config.Zones[zone].Items6, 1 do
-			local item = Config.Zones[zone].Items6[i]
+		for i=1, #Config.Zones[zone].Shotgun, 1 do
+			local item = Config.Zones[zone].Shotgun[i]
 
 			table.insert(elements, {
 				label = ('%s - <span style="color: green;">%s</span>'):format(item.label, _U('shop_menu_item', ESX.Math.GroupDigits(item.price))),
@@ -506,8 +506,8 @@ function OpenShopMenu(wvalue, zone)
 			PlaySoundFrontend(-1, 'NAV', 'HUD_AMMO_SHOP_SOUNDSET', false)
 		end)
 	elseif wvalue == 'wea_assault' then
-		for i=1, #Config.Zones[zone].Items7, 1 do
-			local item = Config.Zones[zone].Items7[i]
+		for i=1, #Config.Zones[zone].Assault, 1 do
+			local item = Config.Zones[zone].Assault[i]
 
 			table.insert(elements, {
 				label = ('%s - <span style="color: green;">%s</span>'):format(item.label, _U('shop_menu_item', ESX.Math.GroupDigits(item.price))),
@@ -543,8 +543,8 @@ function OpenShopMenu(wvalue, zone)
 			PlaySoundFrontend(-1, 'NAV', 'HUD_AMMO_SHOP_SOUNDSET', false)
 		end)
 	elseif wvalue == 'wea_lmg' then
-		for i=1, #Config.Zones[zone].Items8, 1 do
-			local item = Config.Zones[zone].Items8[i]
+		for i=1, #Config.Zones[zone].LMG, 1 do
+			local item = Config.Zones[zone].LMG[i]
 
 			table.insert(elements, {
 				label = ('%s - <span style="color: green;">%s</span>'):format(item.label, _U('shop_menu_item', ESX.Math.GroupDigits(item.price))),
@@ -580,8 +580,8 @@ function OpenShopMenu(wvalue, zone)
 			PlaySoundFrontend(-1, 'NAV', 'HUD_AMMO_SHOP_SOUNDSET', false)
 		end)
 	elseif wvalue == 'wea_sniper' then
-		for i=1, #Config.Zones[zone].Items9, 1 do
-			local item = Config.Zones[zone].Items9[i]
+		for i=1, #Config.Zones[zone].Sniper, 1 do
+			local item = Config.Zones[zone].Sniper[i]
 
 			table.insert(elements, {
 				label = ('%s - <span style="color: green;">%s</span>'):format(item.label, _U('shop_menu_item', ESX.Math.GroupDigits(item.price))),

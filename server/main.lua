@@ -1,6 +1,13 @@
 local shopMisc, shopThrow, shopMelee, shopHandgun, shopSMG, shopShotgun, shopAssault, shopLMG, shopSniper = {}, {}, {}, {}, {}, {}, {}, {}, {}
 
-MySQL.ready(function()
+AddEventHandler('onResourceStart', function(resource)
+	Wait(10000)
+	if resource == GetCurrentResourceName() then
+		mysqlGetWeapons()
+	end
+end)
+
+function mysqlGetWeapons()
 	-- Get/Send Misc Weapons
 	MySQL.Async.fetchAll('SELECT * FROM weaponshops WHERE category = @category', {
 		['@category'] = 'misc'
@@ -171,7 +178,7 @@ MySQL.ready(function()
 
 		TriggerClientEvent('esx_advancedweaponshop:sendSniper', -1, shopSniper)
 	end)
-end)
+end
 
 ESX.RegisterServerCallback('esx_advancedweaponshop:getMisc', function(source, cb)
 	cb(shopMisc)

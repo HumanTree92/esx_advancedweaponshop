@@ -11,15 +11,7 @@ Config.RequireMeleeLicense = true -- Will Require Players to have Melee License 
 Config.Zones = {
 	GunShop = {
 		Legal = true,
-		Items1 = {},
-		Items2 = {},
-		Items3 = {},
-		Items4 = {},
-		Items5 = {},
-		Items6 = {},
-		Items7 = {},
-		Items8 = {},
-		Items9 = {},
+		Misc = {}, Throw = {}, Melee = {}, Handgun = {}, SMG = {}, Shotgun = {}, Assault = {}, LMG = {}, Sniper = {},
 		Locations = {
 			vector3(-662.1, -935.3, 20.8),
 			vector3(810.2, -2157.3, 28.6),
@@ -37,15 +29,7 @@ Config.Zones = {
 
 	BlackShop = {
 		Legal = false,
-		Items1 = {},
-		Items2 = {},
-		Items3 = {},
-		Items4 = {},
-		Items5 = {},
-		Items6 = {},
-		Items7 = {},
-		Items8 = {},
-		Items9 = {},
+		Misc = {}, Throw = {}, Melee = {}, Handgun = {}, SMG = {}, Shotgun = {}, Assault = {}, LMG = {}, Sniper = {},
 		Locations = {
 			vector3(119.47, -1977.88, 19.93)
 		}
