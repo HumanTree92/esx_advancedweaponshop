@@ -684,7 +684,7 @@ Citizen.CreateThread(function()
 					SetBlipColour (blip, 81)
 					SetBlipAsShortRange(blip, true)
 
-					BeginTextCommandSetBlipName("STRING")
+					BeginTextCommandSetBlipName('STRING')
 					AddTextComponentSubstringPlayerName(_U('map_blip'))
 					EndTextCommandSetBlipName(blip)
 				end
